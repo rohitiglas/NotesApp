@@ -3,7 +3,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Alert,
+  Alert,Modal,Pressable,
   ActivityIndicator,
 } from 'react-native';
 import NotesList from './NotesList';
@@ -221,18 +221,28 @@ const App = () => {
           deleteNote={deleteNote}
         />
       )}
-      {toggle && (
+    
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={toggle}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
         <AddEditNote
           testId={'add-edit-page'}
           showModal={toggle}
           note={note}
+          closeModal={()=>setToggle(false)}
           toggleModal={setToggle}
           addNote={addNote}
           updateNote={updateNote}
           inputs={inputs}
           setInputs={setInputs}
         />
-      )}
+        </Modal>
     </View>
   );
 };

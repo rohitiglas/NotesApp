@@ -7,16 +7,16 @@ export function makeServer({environment = 'test'} = {}) {
     },
     seeds(server) {
       server.create('note', {
-        title: 'Nulla sit amet',
-        body: 'Praesent congue erat at massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque commodo eros a enim. Nunc interdum lacus sit amet orci.',
+        title: 'Title1',
+        body: 'Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that drew on just one of the four basic modes',
       });
       server.create('note', {
-        title: 'Curabitur suscipit suscipit',
-        body: 'Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit pede quis nunc. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Praesent nec nisl a purus blandit viverra.',
+        title: 'Title2',
+        body: 'By drawing on a fundamental description of cause and effect found in Einstein’s theory of special relativity, researchers from Imperial College London have come up with a way to help AIs make better guesses too.',
       });
       server.create('note', {
-        title: 'Donec id justo',
-        body: 'Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit. Curabitur suscipit suscipit tellus. Praesent ac sem eget est egestas volutpat. Pellentesque posuere.',
+        title: 'Title3',
+        body: 'However, as the workaround description implies, this separate tracking carries the risk of someone still being served the same ad even after the limit has been exceeded.',
       });
     },
     routes() {

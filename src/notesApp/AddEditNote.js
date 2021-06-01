@@ -9,6 +9,7 @@ const Form = ({
   updateNote,
   inputs,
   setInputs,
+  closeModal
 }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -77,6 +78,14 @@ const Form = ({
           onPress={handleSubmit}>
           <Text style={styles.buttonText}>
             {note.id ? 'Update Note' : 'Add Note'}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          testID={'close-button'}
+          style={{position:'absolute',top:40,right:20,marginTop:20,width:50,height:50,borderRadius:25,backgroundColor:'#000',alignItems:'center',justifyContent: 'center'}}
+          onPress={closeModal}>
+          <Text style={styles.buttonText}>
+            X
           </Text>
         </TouchableOpacity>
       </View>

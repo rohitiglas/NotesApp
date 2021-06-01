@@ -37,7 +37,6 @@ describe('App screen', () => {
     expect(queryByTestId('no-notes')).toBeNull();
     expect(getByTestId('list-data')).toBeDefined();
     await flushMicrotasksQueue();
-    // debug();
     expect(getByTestId('title').children[0]).toBe('Rohit');
   });
   it('should delete note when delete button press',async ()=>{
@@ -52,7 +51,6 @@ describe('App screen', () => {
     expect(deleteNote).toBeDefined();
     fireEvent.press(deleteNote);
     await flushMicrotasksQueue();
-    // debug();
     expect(mock.history.delete.length).toBe(1);
   });
   it('should update api called when update button press',async ()=>{
@@ -70,7 +68,6 @@ describe('App screen', () => {
     console.log("Url is",mock.history.get);
     expect(mock.history.get.length).toBe(6);
     await flushMicrotasksQueue();
-    debug();
     const title=getByTestId('input-title');
     const description=getByTestId('input-description');
     expect(title.props.value).toBe('Rohit');
