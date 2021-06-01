@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notes Item renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "margin": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 22,
+        "fontWeight": "bold",
+      }
+    }
+    testID="title"
+  >
+    Rohit
+  </Text>
+  <Text
+    testID="description"
+  >
+    Bansal
+  </Text>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={Object {}}
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="update-button"
+    >
+      <View
+        style={
+          Array [
+            Object {},
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#007AFF",
+                "fontSize": 18,
+                "margin": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#841584",
+              },
+            ]
+          }
+        >
+          Update
+        </Text>
+      </View>
+    </View>
+    <View
+      accessibilityRole="button"
+      accessibilityState={Object {}}
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="delete-button"
+    >
+      <View
+        style={
+          Array [
+            Object {},
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#007AFF",
+                "fontSize": 18,
+                "margin": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#841584",
+              },
+            ]
+          }
+        >
+          Delete
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
