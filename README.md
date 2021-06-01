@@ -5,5 +5,8 @@
 <div align="center">
   
     
-    <video width="320" height="240" src="https://user-images.githubusercontent.com/17780617/120334881-a7605980-c30e-11eb-809b-6a7b83e8180c.mov"></video>
+   <div align="center">
+    <img src="https://user-images.githubusercontent.com/17780617/120335957-89dfbf80-c30f-11eb-98bd-dee6d58261fb.gif"
+         </img> 
+</div>
 </div>
