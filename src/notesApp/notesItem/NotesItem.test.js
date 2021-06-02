@@ -29,11 +29,7 @@ describe('Notes Item', () => {
     const {getByTestId} = wrapper;
     expect(getByTestId('title')).toBeDefined();
     expect(getByTestId('description')).toBeDefined();
-    expect(getByTestId('update-button')).toBeDefined();
-    expect(getByTestId('delete-button')).toBeDefined();
     expect(getByTestId('title').props.children).toBe('Rohit');
     expect(getByTestId('description').props.children).toBe('Bansal');
-    getByTestId('update-button').props.onClick();
-    getByTestId('delete-button').props.onClick();
   });
 });

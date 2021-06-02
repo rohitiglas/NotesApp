@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {memo} from 'react';
 import {SafeAreaView, StatusBar, FlatList, View, Text} from 'react-native';
 import NotesItem from './NotesItem';
@@ -25,30 +26,21 @@ const NotesList = ({notes, getNote, setToggle, deleteNote}) => {
   };
 
   return (
-    <SafeAreaView testID='list-view' style={{flex: 1, marginTop: StatusBar.currentHeight || 0}}>
-      {notes && notes.length === 0 && (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text
-            testID={'no-notes'}
-            style={{
-              color: '#d90617',
-              textAlign: 'center',
-              fontSize: 30,
-              fontWeight: '700',
-            }}>
-            No Notes available
-          </Text>
-        </View>
-      )}
-      {notes && notes.length > 0 && (
-        <FlatList
-          testID={'list-data'}
-          data={notes}
-          renderItem={renderItem}
-          ItemSeparatorComponent={FlatListItemSeparator}
-          keyExtractor={item => item.id}
-        />
-      )}
+    <SafeAreaView
+      testID="list-view"
+      style={{
+        paddingTop: 0,
+        backgroundColor: '#FAFEFF',
+      }}>
+      <FlatList
+        testID={'list-data'}
+        style={{marginTop: 70, paddingBottom: 100}}
+        numColumns="2"
+        data={notes}
+        renderItem={renderItem}
+        ItemSeparatorComponent={FlatListItemSeparator}
+        keyExtractor={item => item.id}
+      />
     </SafeAreaView>
   );
 };

@@ -56,7 +56,7 @@ exports[`App screen renders correctly 1`] = `
         "borderColor": "rgba(0,0,0,0.2)",
         "borderRadius": 100,
         "borderWidth": 1,
-        "bottom": 10,
+        "bottom": 30,
         "height": 70,
         "justifyContent": "center",
         "opacity": 1,
@@ -81,44 +81,9 @@ exports[`App screen renders correctly 1`] = `
       +
     </Text>
   </View>
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
-    style={
-      Object {
-        "flex": 1,
-        "marginTop": 0,
-      }
-    }
-    testID="list-view"
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        }
-      }
-    >
-      <Text
-        style={
-          Object {
-            "color": "#d90617",
-            "fontSize": 30,
-            "fontWeight": "700",
-            "textAlign": "center",
-          }
-        }
-        testID="no-notes"
-      >
-        No Notes available
-      </Text>
-    </View>
-  </RCTSafeAreaView>
   <Modal
     animationType="slide"
     hardwareAccelerated={false}
-    onRequestClose={[Function]}
     transparent={true}
     visible={false}
   >
@@ -306,7 +271,7 @@ exports[`App screen should show Alert message on Edit/Add notes page when title 
         "borderColor": "rgba(0,0,0,0.2)",
         "borderRadius": 100,
         "borderWidth": 1,
-        "bottom": 10,
+        "bottom": 30,
         "height": 70,
         "justifyContent": "center",
         "opacity": 1,
@@ -334,7 +299,6 @@ exports[`App screen should show Alert message on Edit/Add notes page when title 
   <Modal
     animationType="slide"
     hardwareAccelerated={false}
-    onRequestClose={[Function]}
     transparent={true}
     visible={true}
   >
@@ -485,7 +449,7 @@ exports[`App screen should show Alert message on Edit/Add notes page when title 
 </View>
 `;
 
-exports[`App screen should show Edit/Add notes page when button click 1`] = `
+exports[`App screen should show Edit/Add notes page when Add button click 1`] = `
 <View
   style={
     Object {
@@ -541,7 +505,7 @@ exports[`App screen should show Edit/Add notes page when button click 1`] = `
         "borderColor": "rgba(0,0,0,0.2)",
         "borderRadius": 100,
         "borderWidth": 1,
-        "bottom": 10,
+        "bottom": 30,
         "height": 70,
         "justifyContent": "center",
         "opacity": 1,
@@ -569,7 +533,6 @@ exports[`App screen should show Edit/Add notes page when button click 1`] = `
   <Modal
     animationType="slide"
     hardwareAccelerated={false}
-    onRequestClose={[Function]}
     transparent={true}
     visible={true}
   >

@@ -23,12 +23,6 @@ describe('Notes List', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should show No Data Available when notes is empty', () => {
-    const {getByTestId} = wrapper;
-    expect(getByTestId('no-notes')).toBeDefined();
-    expect(getByTestId('no-notes').props.children).toBe('No Notes available');
-  });
-
   it('should render list item', function () {
     wrapper = render(
       <NotesList

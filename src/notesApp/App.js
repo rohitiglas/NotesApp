@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Alert,Modal,Pressable,
+  Alert,
+  Modal,
   ActivityIndicator,
 } from 'react-native';
 import NotesList from './NotesList';
@@ -33,29 +34,16 @@ const App = () => {
       });
   };
   const getNote = id => {
-    console.log("Note id",id);
     setLoading(true);
 
     axios
       .get(`/api/notes/${id}`)
       .then(function (response) {
-        console.log("Note id Response",response);
         setNote(response.data.notes);
         setLoading(false);
         setToggle(true);
       })
       .catch(error => console.log('Note id Error"', error));
-
-
-
-    // fetch(`/api/notes/${id}`)
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     setNote(data.notes);
-    //     setLoading(false);
-    //     setToggle(true);
-    //   })
-    //   .catch(error => console.log('Note not found', error));
   };
   const addNote = (title, body) => {
     if (!title || !body) {
@@ -63,48 +51,24 @@ const App = () => {
       return;
     }
     setLoading(true);
-    axios.post('/api/notes', {
-      title: title,
-      body: body
-    })
-    .then(function (response) {
-      console.log(response);
+    axios
+      .post('/api/notes', {
+        title: title,
+        body: body,
+      })
+      .then(function (response) {
         setLoading(false);
         getNotes();
         setToggle(false);
         setInputs({title: '', body: ''});
         Alert.alert('', 'Note added successfully');
-    })
-    .catch(function (error) {
-      console.log('Error adding note.', error);
-
+      })
+      .catch(function (error) {
         Alert.alert('', 'Error adding note.');
-    });
-    // fetch('/api/notes', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     title: title,
-    //     body: body,
-    //   }),
-    // })
-    //   .then(res => {
-    //     console.log(res.json());
-    //     setLoading(false);
-    //     getNotes();
-    //     setToggle(false);
-    //     setInputs({title: '', body: ''});
-    //     Alert.alert('', 'Note added successfully');
-    //   })
-    //   .catch(error => {
-    //     console.log('Error adding note.', error);
-
-    //     Alert.alert('', 'Error adding note.');
-    //   });
+      });
   };
 
   const updateNote = (id, title, body) => {
-    console.log("Update Note",title);
-    console.log("Update Note Body",body);
     if (!title || !body) {
       Alert.alert('', 'Please fill all the required input fields');
       return;
@@ -124,40 +88,41 @@ const App = () => {
         Alert.alert('', 'Note updated successfully.');
       })
       .catch(error => {
-        console.log('Note not found', error);
         Alert.alert('', 'Error updating note.');
       });
   };
 
   const deleteNote = id => {
-    console.log("SSLSLLSLSLSLSLLSLSLSLIDIDIDIIDID",id);
-    setLoading(true);
+    console.log('KSKKSKSKKSKSKS1', "Called");
+    Alert.alert(
+      'Notes',
+      'Do you want to delete the note',
+      [
+        {
+          text: 'NO',
+          onPress: () => {},
+        },
+        {
+          text: 'YES',
+          onPress: () => {
+            console.log('KSKKSKSKKSKSKS', "Called");
+            setLoading(true);
 
-
-    axios.delete(`/api/notes/${id}`)
-    .then(function (response) {
-      console.log("SSLSLLSLSLSLSLLSLSLSL",response);
-      getNotes();
-      setLoading(false);
-      Alert.alert('', 'Note deleted successfully');
-    })
-    .catch(function (error) {
-      console.log('Note not found', error);
-      Alert.alert('', 'Error deleting note.');
-    });
-
-
-
-    // fetch(`/api/notes/${id}`, {method: 'DELETE'})
-    //   .then(res => {
-    //     getNotes();
-    //     setLoading(false);
-    //     Alert.alert('', 'Note deleted successfully');
-    //   })
-    //   .catch(error => {
-    //     console.log('Note not found', error);
-    //     Alert.alert('', 'Error deleting note.');
-    //   });
+            axios
+              .delete(`/api/notes/${id}`)
+              .then(function (response) {
+                getNotes();
+                setLoading(false);
+                Alert.alert('', 'Note deleted successfully');
+              })
+              .catch(function (error) {
+                Alert.alert('', 'Error deleting note.');
+              });
+          },
+        },
+      ],
+      {cancelable: false},
+    );
   };
 
   const handleAdd = () => {
@@ -165,6 +130,8 @@ const App = () => {
     setNote([]);
     setToggle(!toggle);
   };
+
+ 
 
   return (
     <View style={{flex: 1, marginTop: 50}}>
@@ -178,12 +145,35 @@ const App = () => {
         }}>
         Notes
       </Text>
-      {loading && (
+      {loading ? (
         <View
           testID={'loader'}
           style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <ActivityIndicator size="large" />
         </View>
+      ) : notes && notes.length === 0 ? (
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Text
+            testID={'no-notes'}
+            style={{
+              color: '#d90617',
+              textAlign: 'center',
+              fontSize: 30,
+              fontWeight: '700',
+            }}>
+            No Notes available
+          </Text>
+        </View>
+      ) : (
+        !toggle && (
+          <NotesList
+            testId={'notes-list'}
+            notes={notes}
+            getNote={getNote}
+            setToggle={setToggle}
+            deleteNote={deleteNote}
+          />
+        )
       )}
       <TouchableOpacity
         testID={'add-notes'}
@@ -195,7 +185,7 @@ const App = () => {
           width: 70,
           position: 'absolute',
           zIndex: 1,
-          bottom: 10,
+          bottom: 30,
           right: 10,
           height: 70,
           backgroundColor: '#0b43e0',
@@ -212,37 +202,19 @@ const App = () => {
           {toggle ? 'X' : '+'}
         </Text>
       </TouchableOpacity>
-      {!toggle && (
-        <NotesList
-          testId={'notes-list'}
-          notes={notes}
-          getNote={getNote}
-          setToggle={setToggle}
-          deleteNote={deleteNote}
-        />
-      )}
-    
-        <Modal
-        animationType="slide"
-        transparent={true}
-        visible={toggle}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
+      <Modal animationType="slide" transparent={true} visible={toggle}>
         <AddEditNote
           testId={'add-edit-page'}
           showModal={toggle}
           note={note}
-          closeModal={()=>setToggle(false)}
+          closeModal={() => setToggle(false)}
           toggleModal={setToggle}
           addNote={addNote}
           updateNote={updateNote}
           inputs={inputs}
           setInputs={setInputs}
         />
-        </Modal>
+      </Modal>
     </View>
   );
 };
