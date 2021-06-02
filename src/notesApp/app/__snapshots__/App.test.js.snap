@@ -183,6 +183,7 @@ exports[`App screen renders correctly 1`] = `
                 "textAlign": "center",
               }
             }
+            testID="button-text"
           >
             Add Note
           </Text>
@@ -400,6 +401,7 @@ exports[`App screen should show Alert message on Edit/Add notes page when title 
                 "textAlign": "center",
               }
             }
+            testID="button-text"
           >
             Add Note
           </Text>
@@ -634,6 +636,7 @@ exports[`App screen should show Edit/Add notes page when Add button click 1`] = 
                 "textAlign": "center",
               }
             }
+            testID="button-text"
           >
             Add Note
           </Text>

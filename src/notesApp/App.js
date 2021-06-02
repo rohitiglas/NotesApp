@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import NotesList from './NotesList';
-import AddEditNote from './AddEditNote';
+import AddEditNote from './addOrEdit/AddEditNote';
 import axios from 'axios';
 const App = () => {
   const [notes, setNotes] = useState([]);
@@ -46,6 +46,7 @@ const App = () => {
       .catch(error => console.log('Note id Error"', error));
   };
   const addNote = (title, body) => {
+    console.log("Add Notes Start",title);
     if (!title || !body) {
       Alert.alert('', 'Please fill all the required input fields');
       return;
@@ -57,6 +58,7 @@ const App = () => {
         body: body,
       })
       .then(function (response) {
+        console.log("Add Notes Response",response);
         setLoading(false);
         getNotes();
         setToggle(false);
@@ -64,6 +66,7 @@ const App = () => {
         Alert.alert('', 'Note added successfully');
       })
       .catch(function (error) {
+        console.log("Add Notes Error",error);
         Alert.alert('', 'Error adding note.');
       });
   };

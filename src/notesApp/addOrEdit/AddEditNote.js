@@ -1,6 +1,6 @@
 import React, {useEffect, useState, memo} from 'react';
 import {TextInput, Text, View, TouchableOpacity, StatusBar} from 'react-native';
-import styles from '../login/LoginStyle';
+import styles from '../../login/LoginStyle';
 const Form = ({
   showModal,
   toggleModal,
@@ -20,7 +20,6 @@ const Form = ({
     }
   }, [note, setInputs]);
   const handleSubmit = () => {
-    console.log("HandleSubmit",note);
     if (!note.id) {
       addNote(title, description);
       return;
@@ -76,7 +75,7 @@ const Form = ({
           testID={'submit-button'}
           style={styles.buttonContainer}
           onPress={handleSubmit}>
-          <Text style={styles.buttonText}>
+          <Text testID='button-text' style={styles.buttonText}>
             {note.id ? 'Update Note' : 'Add Note'}
           </Text>
         </TouchableOpacity>
