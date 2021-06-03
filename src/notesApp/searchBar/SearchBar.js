@@ -35,7 +35,7 @@ const SearchBar = ({onChangeText, clearText, query}) => {
         textStyle={{color: '#000'}}
       />
       <TouchableOpacity
-        testID={'close-button'}
+        testID={'close-search-button'}
         style={{
           position: 'absolute',
           display: query ? '' : 'none',

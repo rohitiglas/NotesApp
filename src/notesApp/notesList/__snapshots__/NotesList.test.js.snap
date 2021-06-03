@@ -34,7 +34,6 @@ exports[`Notes List renders correctly 1`] = `
     stickyHeaderIndices={Array []}
     style={
       Object {
-        "marginTop": 70,
         "paddingBottom": 100,
       }
     }

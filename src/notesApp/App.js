@@ -1,16 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Alert,
-  Modal,
-  ActivityIndicator,
-} from 'react-native';
+import {View, Alert, Modal} from 'react-native';
 import NotesList from './NotesList';
 import AddEditNote from './addOrEdit/AddEditNote';
 import axios from 'axios';
 import SearchBar from './searchBar/SearchBar';
+import Title from './title/Title';
+import Error from './errorScreen/Error';
+import Loader from './Loader';
+import FabButton from './FAB/FabButton';
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [note, setNote] = useState({});
@@ -111,7 +108,7 @@ const App = () => {
         setLoading(false);
         Alert.alert('', 'Note updated successfully.');
       })
-      .catch(function (error) {
+      .catch(function () {
         Alert.alert('', 'Error updating note.');
       });
   };
@@ -155,40 +152,16 @@ const App = () => {
 
   return (
     <View style={{flex: 1, marginTop: 50}}>
-      <Text
-        testID={'notes-title'}
-        style={{
-          color: '#1741db',
-          textAlign: 'center',
-          fontSize: 20,
-          fontWeight: '700',
-        }}>
-        Notes
-      </Text>
+      <Title />
       <SearchBar
         query={query}
         onChangeText={handleSearch}
         clearText={clearSearch}
       />
       {loading ? (
-        <View
-          testID={'loader'}
-          style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <ActivityIndicator size="large" />
-        </View>
+        <Loader />
       ) : notes && notes.length === 0 ? (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text
-            testID={'no-notes'}
-            style={{
-              color: '#d90617',
-              textAlign: 'center',
-              fontSize: 30,
-              fontWeight: '700',
-            }}>
-            No Notes available
-          </Text>
-        </View>
+        <Error />
       ) : (
         !toggle && (
           <NotesList
@@ -200,33 +173,7 @@ const App = () => {
           />
         )
       )}
-      <TouchableOpacity
-        testID={'add-notes'}
-        style={{
-          borderWidth: 1,
-          borderColor: 'rgba(0,0,0,0.2)',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: 70,
-          position: 'absolute',
-          zIndex: 1,
-          bottom: 30,
-          right: 10,
-          height: 70,
-          backgroundColor: '#0b43e0',
-          borderRadius: 100,
-        }}
-        onPress={handleAdd}>
-        <Text
-          style={{
-            color: '#fff',
-            alignSelf: 'center',
-            fontSize: 30,
-            fontWeight: '700',
-          }}>
-          {toggle ? 'X' : '+'}
-        </Text>
-      </TouchableOpacity>
+      <FabButton handleAdd={handleAdd} toggle={toggle} />
       <Modal animationType="slide" transparent={true} visible={toggle}>
         <AddEditNote
           testId={'add-edit-page'}
