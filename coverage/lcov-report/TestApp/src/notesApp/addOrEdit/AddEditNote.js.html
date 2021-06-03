@@ -151,7 +151,16 @@
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
 <a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -164,30 +173,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">50x</span>
-<span class="cline-any cline-yes">50x</span>
-<span class="cline-any cline-yes">50x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">99x</span>
+<span class="cline-any cline-yes">99x</span>
+<span class="cline-any cline-yes">99x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">50x</span>
+<span class="cline-any cline-yes">99x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">50x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">99x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -206,7 +214,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -256,7 +274,7 @@ const Form = ({
   updateNote,
   inputs,
   setInputs,
-  closeModal
+  closeModal,
 }) =&gt; {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -274,7 +292,7 @@ const Form = ({
     updateNote(note.id, title, description);
   };
   return (
-    &lt;View testID='add-edit-page' style={styles.mainContainer}&gt;
+    &lt;View testID="add-edit-page" style={styles.mainContainer}&gt;
       &lt;View style={styles.loginContainer}&gt;
         &lt;StatusBar barStyle="light-content" /&gt;
         &lt;TextInput
@@ -322,17 +340,26 @@ const Form = ({
           testID={'submit-button'}
           style={styles.buttonContainer}
           onPress={handleSubmit}&gt;
-          &lt;Text testID='button-text' style={styles.buttonText}&gt;
+          &lt;Text testID="button-text" style={styles.buttonText}&gt;
             {note.id ? 'Update Note' : 'Add Note'}
           &lt;/Text&gt;
         &lt;/TouchableOpacity&gt;
         &lt;TouchableOpacity
           testID={'close-button'}
-          style={{position:'absolute',top:40,right:20,marginTop:20,width:50,height:50,borderRadius:25,backgroundColor:'#000',alignItems:'center',justifyContent: 'center'}}
+          style={{
+            position: 'absolute',
+            top: 40,
+            right: 20,
+            marginTop: 20,
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            backgroundColor: '#000',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
           onPress={closeModal}&gt;
-          &lt;Text style={styles.buttonText}&gt;
-            X
-          &lt;/Text&gt;
+          &lt;Text style={styles.buttonText}&gt;X&lt;/Text&gt;
         &lt;/TouchableOpacity&gt;
       &lt;/View&gt;
     &lt;/View&gt;
@@ -346,7 +373,7 @@ export default memo(Form);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Jun 02 2021 12:21:09 GMT+0530 (India Standard Time)
+                at Thu Jun 03 2021 12:35:17 GMT+0530 (India Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

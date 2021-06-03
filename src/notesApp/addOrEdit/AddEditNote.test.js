@@ -44,6 +44,11 @@ describe('Add Note Page', () => {
     fireEvent.changeText(description, 'This is my First Note');
     fireEvent.press(submitButton);
   });
+  it('should close Modal when you click Close Button', async function () {
+    const {getByTestId} = wrapper;
+    const closeButton = getByTestId('close-button');
+    fireEvent.press(closeButton);
+  });
 
   it('should call Update Note api when you click Update Button', async function () {
     wrapper = render(

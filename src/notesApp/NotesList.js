@@ -34,7 +34,7 @@ const NotesList = ({notes, getNote, setToggle, deleteNote}) => {
       }}>
       <FlatList
         testID={'list-data'}
-        style={{marginTop: 70, paddingBottom: 100}}
+        style={{paddingBottom: 100}}
         numColumns="2"
         data={notes}
         renderItem={renderItem}

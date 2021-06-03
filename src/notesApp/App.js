@@ -10,16 +10,38 @@ import {
 import NotesList from './NotesList';
 import AddEditNote from './addOrEdit/AddEditNote';
 import axios from 'axios';
+import SearchBar from './searchBar/SearchBar';
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [note, setNote] = useState({});
   const [inputs, setInputs] = useState({title: '', body: ''});
   const [toggle, setToggle] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [searchResult, setSearchResult] = useState({});
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     getNotes();
   }, []);
+
+  const handleSearch = text => {
+    const formattedQuery = text.toLowerCase();
+    const data = searchResult.filter(user => {
+      return contains(user, formattedQuery);
+    });
+    setQuery(text);
+    setNotes(data);
+  };
+  const clearSearch = () => {
+    setQuery('');
+    setNotes(searchResult);
+    // getNotes();
+  };
+  const contains = ({title, body}, query) => {
+    return !!(
+      title.toLowerCase().includes(query) || body.toLowerCase().includes(query)
+    );
+  };
 
   const getNotes = () => {
     setLoading(true);
@@ -28,6 +50,7 @@ const App = () => {
       .then(function (response) {
         setLoading(false);
         setNotes(response.data.notes);
+        setSearchResult(response.data.notes);
       })
       .catch(function (error) {
         console.log(error);
@@ -46,7 +69,7 @@ const App = () => {
       .catch(error => console.log('Note id Error"', error));
   };
   const addNote = (title, body) => {
-    console.log("Add Notes Start",title);
+    console.log('Add Notes Start', title);
     if (!title || !body) {
       Alert.alert('', 'Please fill all the required input fields');
       return;
@@ -58,7 +81,7 @@ const App = () => {
         body: body,
       })
       .then(function (response) {
-        console.log("Add Notes Response",response);
+        console.log('Add Notes Response', response);
         setLoading(false);
         getNotes();
         setToggle(false);
@@ -66,7 +89,7 @@ const App = () => {
         Alert.alert('', 'Note added successfully');
       })
       .catch(function (error) {
-        console.log("Add Notes Error",error);
+        console.log('Add Notes Error', error);
         Alert.alert('', 'Error adding note.');
       });
   };
@@ -77,26 +100,23 @@ const App = () => {
       return;
     }
     setLoading(true);
-    fetch(`/api/notes/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
+    axios
+      .patch(`/api/notes/${id}`, {
         title: title,
         body: body,
-      }),
-    })
-      .then(res => {
+      })
+      .then(function (response) {
         getNotes();
         setToggle(false);
         setLoading(false);
         Alert.alert('', 'Note updated successfully.');
       })
-      .catch(error => {
+      .catch(function (error) {
         Alert.alert('', 'Error updating note.');
       });
   };
 
   const deleteNote = id => {
-    console.log('KSKKSKSKKSKSKS1', "Called");
     Alert.alert(
       'Notes',
       'Do you want to delete the note',
@@ -108,7 +128,6 @@ const App = () => {
         {
           text: 'YES',
           onPress: () => {
-            console.log('KSKKSKSKKSKSKS', "Called");
             setLoading(true);
 
             axios
@@ -134,8 +153,6 @@ const App = () => {
     setToggle(!toggle);
   };
 
- 
-
   return (
     <View style={{flex: 1, marginTop: 50}}>
       <Text
@@ -148,6 +165,11 @@ const App = () => {
         }}>
         Notes
       </Text>
+      <SearchBar
+        query={query}
+        onChangeText={handleSearch}
+        clearText={clearSearch}
+      />
       {loading ? (
         <View
           testID={'loader'}
