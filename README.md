@@ -1,7 +1,12 @@
 # NotesApp
 
-<h1>react-testing-library</h1>
-<h1>jest</h1>
+<h3>react-testing-library</h1>
+<p>React Testing Library builds on top of DOM Testing Library by adding APIs for working with React components.
+
+Projects created with Create React App have out of the box support for React Testing Library. If that is not the case, you can add it via npm like so:
+  <h4>npm install --save-dev @testing-library/react </h4>
+  </p>
+<h2>jest</h1>
 <h2>migrate js (For Local APIs)</h1>
 
 
