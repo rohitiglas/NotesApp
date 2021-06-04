@@ -8,7 +8,7 @@ Projects created with Create React App have out of the box support for React Tes
   
   The React Testing Library is a very light-weight solution for testing React components. It provides light utility functions on top of react-dom and react-dom/test-utils, in a way that encourages better testing practices. Its primary guiding principle is:
 
-The more your tests resemble the way your software is used, the more confidence they can give you.
+<mark>The more your tests resemble the way your software is used, the more confidence they can give you.</mark>
   </p>
 <h2>jest</h1>
 <h2>migrate js (For Local APIs)</h1>
