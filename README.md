@@ -5,6 +5,10 @@
 
 Projects created with Create React App have out of the box support for React Testing Library. If that is not the case, you can add it via npm like so:
   <h4>npm install --save-dev @testing-library/react </h4>
+  
+  The React Testing Library is a very light-weight solution for testing React components. It provides light utility functions on top of react-dom and react-dom/test-utils, in a way that encourages better testing practices. Its primary guiding principle is:
+
+The more your tests resemble the way your software is used, the more confidence they can give you.
   </p>
 <h2>jest</h1>
 <h2>migrate js (For Local APIs)</h1>
