@@ -1,5 +1,9 @@
 # NotesApp
 
+# 1.react-testing-library
+# 2.jest
+# 3.migrate js (For Local APIs)
+
 
 
 <div align="center">
