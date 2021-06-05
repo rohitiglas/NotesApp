@@ -27,7 +27,12 @@ const Form = ({
     updateNote(note.id, title, description);
   };
   return (
-    <View testID="add-edit-page" style={styles.mainContainer}>
+    <View
+      testID="add-edit-page"
+      style={{
+        flex: 1,
+        backgroundColor: '#66CCCC',
+      }}>
       <View style={styles.loginContainer}>
         <StatusBar barStyle="light-content" />
         <TextInput
@@ -73,7 +78,12 @@ const Form = ({
         />
         <TouchableOpacity
           testID={'submit-button'}
-          style={styles.buttonContainer}
+          style={{
+            width: '80%',
+            borderRadius: 20,
+            backgroundColor: 'rgba(134,9,231,0.73)',
+            paddingVertical: 15,
+          }}
           onPress={handleSubmit}>
           <Text testID="button-text" style={styles.buttonText}>
             {note.id ? 'Update Note' : 'Add Note'}

@@ -4,8 +4,13 @@ export function makeServer({environment = 'test'} = {}) {
     environment,
     models: {
       notes: Model,
+      users: Model,
     },
     seeds(server) {
+      server.create('user', {
+        email: 'rohitiglas2@gmail.com',
+        userName: 'Rohit Bansal',
+      });
       server.create('note', {
         title: 'Title1',
         body: 'Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that drew on just one of the four basic modes',
@@ -20,35 +25,70 @@ export function makeServer({environment = 'test'} = {}) {
       });
     },
     routes() {
-      this.namespace = 'api/notes';
-      // this.get('/api/movies', () => {
-      //   return {
-      //     movies: [
-      //       {id: 1, name: 'Inception', year: 2010},
-      //       {id: 2, name: 'Interstellar', year: 2014},
-      //       {id: 3, name: 'Dunkirk', year: 2017},
-      //     ],
-      //   };
-      // });
-      this.get('/', (schema, request) => {
+      this.post('api/login/', (schema, request) => {
+        return {
+          status: 200,
+          access_token: '4ba50ee6-34ac-46bf-8dc7-18eb9383aa72',
+          token_type: 'bearer',
+          refresh_token: '0508d0cd-af91-43eb-8e9e-06e9a29f0ff6',
+          expires_in: 86379,
+          scope: 'basic',
+        };
+      });
+
+      this.post('api/forgetPassword/', (schema, request) => {
+        return {
+          status: 200,
+          otp: 123456,
+          access_token: '4ba50ee6-34ac-46bf-8dc7-18eb9383aa72',
+          token_type: 'bearer',
+          refresh_token: '0508d0cd-af91-43eb-8e9e-06e9a29f0ff6',
+          expires_in: 86379,
+          scope: 'basic',
+        };
+      });
+      this.post('api/otpVerification/', (schema, request) => {
+        return {
+          status: 200,
+          access_token: '4ba50ee6-34ac-46bf-8dc7-18eb9383aa72',
+          token_type: 'bearer',
+          refresh_token: '0508d0cd-af91-43eb-8e9e-06e9a29f0ff6',
+          expires_in: 86379,
+          scope: 'basic',
+        };
+      });
+      this.patch('api/resetPassword/', (schema, request) => {
+        return {
+          status: 200,
+          access_token: '4ba50ee6-34ac-46bf-8dc7-18eb9383aa72',
+          token_type: 'bearer',
+          refresh_token: '0508d0cd-af91-43eb-8e9e-06e9a29f0ff6',
+          expires_in: 86379,
+          scope: 'basic',
+        };
+      });
+      this.post('api/registerUser/', (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+        return schema.users.create(attrs);
+      });
+      this.get('api/notes/', (schema, request) => {
         return schema.notes.all();
       });
-      this.get('/:id', (schema, request) => {
+      this.get('api/notes/:id', (schema, request) => {
         let id = request.params.id;
         return schema.notes.find(id);
       });
-      this.post('/', (schema, request) => {
-        console.log("kskskkskskkskskksks",request);
+      this.post('api/notes/', (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
         return schema.notes.create(attrs);
       });
-      this.patch('/:id', (schema, request) => {
+      this.patch('api/notes/:id', (schema, request) => {
         let newAttrs = JSON.parse(request.requestBody);
         let id = request.params.id;
         let note = schema.notes.find(id);
         return note.update(newAttrs);
       });
-      this.delete('/:id', (schema, request) => {
+      this.delete('api/notes/:id', (schema, request) => {
         let id = request.params.id;
         return schema.notes.find(id).destroy();
       });

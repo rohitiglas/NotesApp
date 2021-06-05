@@ -15,7 +15,7 @@ const FabButton = ({handleAdd, toggle}) => (
       bottom: 30,
       right: 10,
       height: 70,
-      backgroundColor: '#0b43e0',
+      backgroundColor: '#66CCCC',
       borderRadius: 100,
     }}
     onPress={handleAdd}>
@@ -26,7 +26,7 @@ const FabButton = ({handleAdd, toggle}) => (
         fontSize: 30,
         fontWeight: '700',
       }}>
-      {toggle ? 'X' : '+'}
+      +
     </Text>
   </TouchableOpacity>
 );

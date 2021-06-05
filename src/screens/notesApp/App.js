@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {View, Alert, Modal} from 'react-native';
+// import SplashScreen from 'react-native-splash-screen';
 import NotesList from './NotesList';
 import AddEditNote from './addOrEdit/AddEditNote';
 import axios from 'axios';
 import SearchBar from './searchBar/SearchBar';
 import Title from './title/Title';
 import Error from './errorScreen/Error';
-import Loader from './Loader';
+import Loader from '../../components/Loader';
 import FabButton from './FAB/FabButton';
+import { _retrieveData } from "../../asyncStorage/Local";
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [note, setNote] = useState({});
@@ -17,7 +19,14 @@ const App = () => {
   const [searchResult, setSearchResult] = useState({});
   const [query, setQuery] = useState('');
 
+  // React.useEffect(() => {
+  //   SplashScreen.hide();
+  // });
+
   useEffect(() => {
+    _retrieveData().then(res => {
+      console.log('SLLSLSLSLSLLSLSLS', res);
+    });
     getNotes();
   }, []);
 
@@ -151,16 +160,14 @@ const App = () => {
   };
 
   return (
-    <View style={{flex: 1, marginTop: 50}}>
-      <Title />
+    <View style={{flex: 1, marginTop: 10}}>
       <SearchBar
         query={query}
         onChangeText={handleSearch}
         clearText={clearSearch}
       />
-      {loading ? (
-        <Loader />
-      ) : notes && notes.length === 0 ? (
+      <Loader isLoading={loading} />
+      {notes && notes.length === 0 ? (
         <Error />
       ) : (
         !toggle && (
@@ -173,7 +180,7 @@ const App = () => {
           />
         )
       )}
-      <FabButton handleAdd={handleAdd} toggle={toggle} />
+      {!toggle && <FabButton handleAdd={handleAdd} toggle={toggle} />}
       <Modal animationType="slide" transparent={true} visible={toggle}>
         <AddEditNote
           testId={'add-edit-page'}
