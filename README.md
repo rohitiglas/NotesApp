@@ -2,15 +2,7 @@
 
 <div align="center">
       <a href="https://www.youtube.com/watch?v=s_nSEoGqEA4">
-     <img 
-      src="https://img.youtube.com/vi/StTqXEQ2l-Y/0.jpg" 
-      alt="Everything Is AWESOME" 
-      style="width:100%;">
       </a>
-      
-      <video class="tab" controls>Your browser does not support the &lt;video&gt; tag.
-  <source src="https://user-images.githubusercontent.com/17780617/121481864-2e39c400-c9ea-11eb-8e5f-d5a3a2a7eeb5.mov"/>
-</video>
     </div>
 
 <div align="center">
