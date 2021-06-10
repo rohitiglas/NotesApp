@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login Form renders correctly 1`] = `
+exports[`Signup Form renders correctly 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -38,10 +38,54 @@ exports[`Login Form renders correctly 1`] = `
       Object {
         "marginLeft": 25,
         "marginRight": 25,
-        "marginTop": 120,
+        "marginTop": 80,
       }
     }
   >
+    <View>
+      <TextInput
+        allowFontScaling={true}
+        error=""
+        inputContainerStyle={
+          Object {
+            "borderBottomWidth": 0,
+          }
+        }
+        onChangeText={[Function]}
+        placeholder="Email"
+        placeholderTextColor="#808080"
+        rejectResponderTermination={true}
+        style={
+          Object {
+            "backgroundColor": "#1e1e1d",
+            "borderColor": "#FFF",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "color": "#FFF",
+            "fontSize": 18,
+            "fontWeight": "500",
+            "padding": 20,
+          }
+        }
+        testID="input-email"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+      <Text
+        style={
+          Object {
+            "color": "#ff2251",
+            "fontSize": 14,
+            "fontWeight": "900",
+            "margin": 10,
+          }
+        }
+      >
+         
+        
+         
+      </Text>
+    </View>
     <View>
       <TextInput
         allowFontScaling={true}
@@ -64,11 +108,10 @@ exports[`Login Form renders correctly 1`] = `
             "color": "#FFF",
             "fontSize": 18,
             "fontWeight": "500",
-            "marginTop": 20,
             "padding": 20,
           }
         }
-        testID="input-email"
+        testID="input-username"
         underlineColorAndroid="transparent"
         value=""
       />
@@ -110,11 +153,55 @@ exports[`Login Form renders correctly 1`] = `
             "color": "#FFF",
             "fontSize": 18,
             "fontWeight": "500",
-            "marginTop": 20,
             "padding": 20,
           }
         }
         testID="input-password"
+        underlineColorAndroid="transparent"
+        value=""
+      />
+      <Text
+        style={
+          Object {
+            "color": "#ff2251",
+            "fontSize": 14,
+            "fontWeight": "900",
+            "margin": 10,
+          }
+        }
+      >
+         
+        
+         
+      </Text>
+    </View>
+    <View>
+      <TextInput
+        allowFontScaling={true}
+        error=""
+        inputContainerStyle={
+          Object {
+            "borderBottomWidth": 0,
+          }
+        }
+        onChangeText={[Function]}
+        placeholder="Confirm Password"
+        placeholderTextColor="#808080"
+        rejectResponderTermination={true}
+        secureTextEntry={true}
+        style={
+          Object {
+            "backgroundColor": "#1e1e1d",
+            "borderColor": "#FFF",
+            "borderRadius": 5,
+            "borderWidth": 1,
+            "color": "#FFF",
+            "fontSize": 18,
+            "fontWeight": "500",
+            "padding": 20,
+          }
+        }
+        testID="input-c-password"
         underlineColorAndroid="transparent"
         value=""
       />
@@ -169,42 +256,7 @@ exports[`Login Form renders correctly 1`] = `
           }
         }
       >
-        LOGIN
-      </Text>
-    </View>
-    <View
-      accessible={true}
-      focusable={true}
-      onClick={[Function]}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "opacity": 1,
-        }
-      }
-      testID="forget-password"
-    >
-      <Text
-        style={
-          Object {
-            "color": "#656565",
-            "fontSize": 16,
-            "fontWeight": "700",
-            "marginLeft": 10,
-            "marginRight": 10,
-            "marginTop": 10,
-            "paddingBottom": 10,
-            "paddingTop": 10,
-            "textAlign": "right",
-          }
-        }
-      >
-        Forget Password
+        Register
       </Text>
     </View>
     <View
@@ -226,7 +278,7 @@ exports[`Login Form renders correctly 1`] = `
           }
         }
       >
-        Not a member of Notes?
+        Already a member of Notes?
       </Text>
       <Text
         accessible={true}
@@ -249,9 +301,9 @@ exports[`Login Form renders correctly 1`] = `
             "paddingTop": 10,
           }
         }
-        testID="signup-button"
+        testID="login-button"
       >
-        Sign up
+        Login
       </Text>
     </View>
   </View>

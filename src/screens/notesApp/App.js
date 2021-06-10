@@ -1,16 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {View, Alert, Modal} from 'react-native';
+import {View, Alert, Modal, TouchableOpacity, Text} from 'react-native';
 // import SplashScreen from 'react-native-splash-screen';
 import NotesList from './NotesList';
 import AddEditNote from './addOrEdit/AddEditNote';
 import axios from 'axios';
 import SearchBar from './searchBar/SearchBar';
-import Title from './title/Title';
 import Error from './errorScreen/Error';
 import Loader from '../../components/Loader';
 import FabButton from './FAB/FabButton';
-import { _retrieveData } from "../../asyncStorage/Local";
-const App = () => {
+import {_storeData, resetNavigation} from '../../asyncStorage/Local';
+const App = ({navigation}) => {
   const [notes, setNotes] = useState([]);
   const [note, setNote] = useState({});
   const [inputs, setInputs] = useState({title: '', body: ''});
@@ -19,14 +18,34 @@ const App = () => {
   const [searchResult, setSearchResult] = useState({});
   const [query, setQuery] = useState('');
 
-  // React.useEffect(() => {
-  //   SplashScreen.hide();
-  // });
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: 'Notes', //Set Header Title
+      headerStyle: {
+        backgroundColor: '#66CCCC', //Set Header color
+      },
+      headerTintColor: '#fff', //Set Header text color
+      headerTitleStyle: {
+        fontWeight: 'bold', //Set Header text style
+        fontSize: 20,
+      },
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => Logout()} style={{marginLeft: 10}}>
+          <Text style={{color: 'white', fontSize: 16, fontWeight: 'bold'}}>
+            Logout
+          </Text>
+        </TouchableOpacity>
+      ),
+      headerRight: () => {},
+    });
+  }, [navigation]);
+
+  const Logout = () => {
+    resetNavigation(navigation, 'Login');
+    _storeData('');
+  };
 
   useEffect(() => {
-    _retrieveData().then(res => {
-      console.log('SLLSLSLSLSLLSLSLS', res);
-    });
     getNotes();
   }, []);
 
@@ -59,6 +78,7 @@ const App = () => {
         setSearchResult(response.data.notes);
       })
       .catch(function (error) {
+        setLoading(false);
         console.log(error);
       });
   };
@@ -72,7 +92,10 @@ const App = () => {
         setLoading(false);
         setToggle(true);
       })
-      .catch(error => console.log('Note id Error"', error));
+      .catch(error => {
+        console.log('Note id Error"', error);
+        setLoading(false);
+      });
   };
   const addNote = (title, body) => {
     console.log('Add Notes Start', title);
@@ -97,6 +120,7 @@ const App = () => {
       .catch(function (error) {
         console.log('Add Notes Error', error);
         Alert.alert('', 'Error adding note.');
+        setLoading(false);
       });
   };
 
@@ -119,6 +143,7 @@ const App = () => {
       })
       .catch(function () {
         Alert.alert('', 'Error updating note.');
+        setLoading(false);
       });
   };
 
@@ -145,6 +170,7 @@ const App = () => {
               })
               .catch(function (error) {
                 Alert.alert('', 'Error deleting note.');
+                setLoading(false);
               });
           },
         },

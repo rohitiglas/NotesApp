@@ -7,11 +7,11 @@ import {
   TouchableOpacity,
   StatusBar,
 } from 'react-native';
-import {NavigationAction} from '@react-navigation/native';
 import styles from './resetStyle';
 import axios from 'axios';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
+import {resetNavigation} from '../../asyncStorage/Local';
 
 export const ValidationErrors = {
   FormEmpty: 'Form fields cannot be blank',
@@ -41,14 +41,9 @@ const ResetPassword = ({route, navigation}) => {
         })
         .then(function (response) {
           setLoader(false);
-          console.log('Add Notes Response', response);
+          console.log('Reset Response', response);
           Alert.alert('', 'Password reset successfully');
-          // const resetAction = NavigationAction.reset({
-          //   index: 0,
-          //   actions: [NavigationAction.navigate({routeName: 'Login'})],
-          // });
-          // navigation.dispatch(resetAction);
-          navigation.navigate('Login');
+          resetNavigation(navigation, 'Login');
         })
         .catch(function (error) {
           setLoader(false);

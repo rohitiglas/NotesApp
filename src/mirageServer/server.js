@@ -39,7 +39,7 @@ export function makeServer({environment = 'test'} = {}) {
       this.post('api/forgetPassword/', (schema, request) => {
         return {
           status: 200,
-          otp: 123456,
+          otp: 1234,
           access_token: '4ba50ee6-34ac-46bf-8dc7-18eb9383aa72',
           token_type: 'bearer',
           refresh_token: '0508d0cd-af91-43eb-8e9e-06e9a29f0ff6',

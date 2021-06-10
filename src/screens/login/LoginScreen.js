@@ -78,7 +78,7 @@ const Login = ({navigation}) => {
         <Input
           style={styles.textInput}
           inputContainerStyle={{borderBottomWidth: 0}}
-          testID={'input-username'}
+          testID={'input-email'}
           value={email}
           onChangeText={text => changeText(text, 'email')}
           placeholder={'UserName'}
@@ -126,6 +126,7 @@ const Login = ({navigation}) => {
             Not a member of Notes?
           </Text>
           <TouchableNativeFeedback
+            testID={'signup-button'}
             onPress={() => {
               navigation.navigate('SignUp');
             }}>

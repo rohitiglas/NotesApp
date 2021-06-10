@@ -11,10 +11,11 @@ import styles from './forgetStyle';
 import axios from 'axios';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
+import {emailValidate, resetNavigation} from '../../asyncStorage/Local';
 
 export const ValidationErrors = {
   FormEmpty: 'Form fields cannot be blank',
-  UsernameEmpty: 'Username cannot be blank',
+  UsernameEmpty: 'Please enter valid email',
   PasswordEmpty: 'Password cannot be blank',
 };
 const ForgetPassword = ({navigation}) => {
@@ -24,7 +25,7 @@ const ForgetPassword = ({navigation}) => {
   const [validationError, setValidationError] = useState('');
 
   const onLoginClick = () => {
-    if (email.length === 0) {
+    if (!emailValidate(email)) {
       setEmailError(ValidationErrors.UsernameEmpty);
     } else {
       setLoader(true);
@@ -34,9 +35,15 @@ const ForgetPassword = ({navigation}) => {
         })
         .then(function (response) {
           setLoader(false);
-          console.log('Add Notes Response', response);
-          Alert.alert('', 'Login Successfully');
-          navigation.navigate('AuthVerification', {email});
+          console.log('Forget password Response', response.data.otp);
+          Alert.alert(
+            '',
+            `You can use this OTP ${response?.data?.otp} as of now to reset your password`,
+          );
+          navigation.navigate('AuthVerification', {
+            email,
+            getOtp: response?.data?.otp,
+          });
         })
         .catch(function (error) {
           setLoader(false);

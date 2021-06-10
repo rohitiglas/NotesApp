@@ -9,6 +9,7 @@ import Signup from '../screens/registerScreen/Signup';
 import ForgetPassword from '../screens/forgetPassword/ForgetPassword';
 import AuthVerification from '../screens/verification/AuthVerification';
 import ResetPassword from '../screens/resetPassword/ResetPassword';
+import SplashScreen from '../screens/splashScreen/SplashScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,11 @@ function AppNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Splash"
+          component={SplashScreen}
+        />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={Signup} />
         <Stack.Screen name="ForgetPassword" component={ForgetPassword} />

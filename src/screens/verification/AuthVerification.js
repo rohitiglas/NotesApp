@@ -14,7 +14,7 @@ import OtpInput from '../../components/OtpInput';
 
 export const ValidationErrors = {
   FormEmpty: 'Form fields cannot be blank',
-  UsernameEmpty: 'Username cannot be blank',
+  UsernameEmpty: 'Please enter valid OTP',
   PasswordEmpty: 'Password cannot be blank',
 };
 const AuthVerification = ({route, navigation}) => {
@@ -23,10 +23,10 @@ const AuthVerification = ({route, navigation}) => {
   const [otpError, setOtpError] = useState('');
 
   const onLoginClick = () => {
+    const {email, getOtp} = route.params;
     if (otp.length === 0) {
       setOtpError(ValidationErrors.UsernameEmpty);
     } else {
-      const {email} = route.params;
       setLoader(true);
       axios
         .post('/api/otpVerification', {

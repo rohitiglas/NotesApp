@@ -12,11 +12,18 @@ import styles from './signUpStyle';
 import axios from 'axios';
 import Input from '../../components/Input';
 import Loader from '../../components/Loader';
+import {
+  _storeData,
+  emailValidate,
+  resetNavigation,
+} from '../../asyncStorage/Local';
 
 export const ValidationErrors = {
   FormEmpty: 'Form fields cannot be blank',
   UsernameEmpty: 'Username cannot be blank',
+  EmailEmpty: 'Email cannot be blank',
   PasswordEmpty: 'Password cannot be blank',
+  PasswordMatch: 'Password should be same',
 };
 const Signup = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -33,6 +40,8 @@ const Signup = ({navigation}) => {
   const onLoginClick = () => {
     if (email.length === 0 && password.length === 0 && userName.length === 0) {
       setValidationError(ValidationErrors.FormEmpty);
+    } else if (!emailValidate(email)) {
+      setEmailError(ValidationErrors.EmailEmpty);
     } else if (userName.length === 0) {
       setUserNameError(ValidationErrors.UsernameEmpty);
     } else if (password.length === 0) {
@@ -47,11 +56,12 @@ const Signup = ({navigation}) => {
           userName,
           password,
         })
-        .then(function (response) {
+        .then(async function (response) {
           setLoader(false);
           console.log('Add Notes Response', response);
           Alert.alert('', 'Register Successfully');
-          navigation.navigate('Notes');
+          await _storeData(email);
+          resetNavigation(navigation, 'Notes');
         })
         .catch(function (error) {
           setLoader(false);
@@ -157,6 +167,7 @@ const Signup = ({navigation}) => {
             Already a member of Notes?
           </Text>
           <TouchableNativeFeedback
+          testID={'login-button'}
             onPress={() => {
               navigation.navigate('Login');
             }}>
