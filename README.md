@@ -11,7 +11,7 @@
   <h1>Login </h1>
     
    <div>
-    <img width="300px" height="500px" src="https://user-images.githubusercontent.com/17780617/121481305-9dfb7f00-c9e9-11eb-9b1c-ef6cf03f22b7.gif"
+    <img width="200px" height="500px" src="https://user-images.githubusercontent.com/17780617/121481305-9dfb7f00-c9e9-11eb-9b1c-ef6cf03f22b7.gif"
          </img> 
      
     
